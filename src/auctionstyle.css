@@ -67,7 +67,6 @@ body
 
 .navbar ul li a select
 {
-  transition: 300ms;
   position: relative;
   display: flex;
   font-size: 1em;
@@ -89,7 +88,6 @@ body
 
 .navbar ul li a input.searchinput
 {
-  transition: 300ms;
   position: relative;
   display: flex;
   font-size: 1em;
