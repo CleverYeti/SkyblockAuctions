@@ -67,6 +67,7 @@ body
 
 .navbar ul li a select
 {
+  transition: 300ms;
   position: relative;
   display: flex;
   font-size: 1em;
@@ -79,8 +80,16 @@ body
   color: var(--textcolor);
 }
 
+.navbar ul li a:hover select
+{
+  background: #0fbcf9 !important;
+  box-shadow: 0 0 15px #0fbcf999;
+  color: var(--clr);
+}
+
 .navbar ul li a input.searchinput
 {
+  transition: 300ms;
   position: relative;
   display: flex;
   font-size: 1em;
@@ -91,6 +100,13 @@ body
   border-radius: 10px;
   border: none;
   color: var(--textcolor);
+}
+
+.navbar ul li a input.searchinput
+{
+  background: #0fbcf9;
+  box-shadow: 0 0 15px #0fbcf999;
+  color: var(--clr);
 }
 
 .catbar
