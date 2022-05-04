@@ -140,6 +140,10 @@ body
   width : 30px;
 }
 
+.selectedcat{
+  background: #ffa801 !important;
+}
+
 @media (max-width: 920px) {
   .catbar
   {
@@ -154,3 +158,4 @@ body
     width: 20vw;
   }
 }
+
