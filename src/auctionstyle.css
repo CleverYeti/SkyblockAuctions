@@ -80,10 +80,10 @@ body
   color: var(--textcolor);
 }
 
-.navbar ul li a:hover select
+.navbar ul li a select:active
 {
   background: #0fbcf9 !important;
-  box-shadow: 0 0 15px #0fbcf999;
+  box-shadow: 0 0 15px #0fbcf999 !important;
   color: var(--clr);
 }
 
@@ -102,10 +102,10 @@ body
   color: var(--textcolor);
 }
 
-.navbar ul li a input.searchinput
+.navbar ul li a input.searchinput:active
 {
-  background: #0fbcf9;
-  box-shadow: 0 0 15px #0fbcf999;
+  background: #0fbcf9 !important;
+  box-shadow: 0 0 15px #0fbcf999 !important;
   color: var(--clr);
 }
 
