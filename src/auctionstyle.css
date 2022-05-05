@@ -15,7 +15,12 @@
 		--barcolor: #333333;
 	}
 }
-
+:root {
+  --clr: #1c1c1c;
+  --buttoncolor: #000;
+  --textcolor: #aaaaaa;
+  --barcolor: #333333;
+}
 @media(prefers-color-scheme: light) {
 	/*
 	 * TODO: fill with useful stuff,
@@ -53,21 +58,11 @@ body {
 	list-style: none;
 	z-index: 1;
 	padding: 5px;
-}
-
-
-.navbar ul li a {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	width: 100%;
-	text-align: center;
+  text-align: center;
 	font-weight: 500;
 }
 
-.navbar ul li a select {
+.navbar ul li select {
 	position: relative;
 	display: flex;
 	font-size: 1em;
@@ -88,7 +83,7 @@ body {
 }
 */
 
-.navbar ul li a input.searchinput {
+.navbar ul li input.searchinput {
 	position: relative;
 	display: flex;
 	font-size: 1em;
