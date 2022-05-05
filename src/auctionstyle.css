@@ -169,11 +169,11 @@ body {
 		transform: translateY(-45px);
 	}
 
-	.navbar ul li a input.searchinput {
+	.navbar ul li input.searchinput {
 		width: calc(40vw - 70px);
 	}
 
-	.navbar ul li a select {
+	.navbar ul li select {
 		width: 20vw;
 	}
 }
