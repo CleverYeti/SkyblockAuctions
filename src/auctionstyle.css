@@ -115,13 +115,12 @@ body {
 	padding: 10px;
 	/* FIXME: `margin` shouldn't be set here. */
 	margin: 5px 10px 5px 10px;
-	
 }
 
 .button_image {
 	width: 30px;
 	height: 30px;
-	display: block; /* otherwise there is 4ox more at the bottom... */
+	display: block; /* otherwise there is 4px more at the bottom... */
 }
 
 .selectedcat {
