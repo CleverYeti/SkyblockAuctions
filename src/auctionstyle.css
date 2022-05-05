@@ -123,38 +123,38 @@ body {
 	display: block; /* otherwise there is 4px more at the bottom... */
 }
 
-#allcat.selectedcat {
+#allcat {
 	background: #bbbbbb !important;
 	box-shadow: 0px 0px 15px #bbbbbb99
 }
 
-#allcat.selectedcat {
+#allcat {
 	background: #ffa801 !important;
 	box-shadow: 0px 0px 15px #ffa80199;
 }
 
-#armor.selectedcat {
+#armor {
 	background: #0fbcf9 !important;
 	box-shadow: 0px 0px 15px #0fbcf999;
 }
 
-#accessories.selectedcat {
+#accessories {
 	background: #05c46b !important;
 	box-shadow: 0px 0px 15px #05c46b99;
 }
 
-#consumables.selectedcat {
+#consumables {
 	background: #f53b57 !important;
 	box-shadow: 0px 0px 15px #f53b5799;
 }
 
-#blocks.selectedcat {
+#blocks {
 	/* find better color */
 	background: #ebc57f !important;
 	box-shadow: 0px 0px 15px #ebc57f99;
 }
 
-#miscellaneous.selectedcat {
+#miscellaneous {
 	background: #5d62fb !important;
 	box-shadow: 0px 0px 15px #5d62fb99;
 }
