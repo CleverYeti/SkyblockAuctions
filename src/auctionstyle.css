@@ -7,13 +7,22 @@
 	font-family: 'Inter', sans-serif;
 }
 
-:root {
-	--clr: #1c1c1c;
-	--buttoncolor: #000;
-	--textcolor: #aaaaaa;
-	--barcolor: #333333;
+@media(prefers-color-scheme: dark) {
+	:root {
+		--clr: #1c1c1c;
+		--buttoncolor: #000;
+		--textcolor: #aaaaaa;
+		--barcolor: #333333;
+	}
 }
 
+@media(prefers-color-scheme: light) {
+	/*
+	 * TODO: fill with useful stuff,
+	 *       possibly with the help of
+	 *       `filter: invert()`
+	 */
+}
 
 body {
 	display: flex;
@@ -120,7 +129,8 @@ body {
 .button_image {
 	width: 30px;
 	height: 30px;
-	display: block; /* otherwise there is 4px more at the bottom... */
+	display: block;
+	/* otherwise there is 4px more at the bottom... */
 }
 
 #allcat.selectedcat {
