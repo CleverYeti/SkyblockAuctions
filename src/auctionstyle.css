@@ -101,45 +101,27 @@ body {
 */
 
 .catbar {
+	display: flex;
+	flex-direction: column;
 	position: fixed;
 	left: 0;
 	justify-content: center;
 	align-items: center;
 }
 
-.catbar ul {
-	align-items: center;
-	flex-direction: row;
-	display: block;
-}
-
-.catbar ul li {
-	position: relative;
-	list-style: none;
-	z-index: 1;
-	margin: 10px;
-	display: flex;
-}
-
-
-.catbar ul li a {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: row;
-	height: 100%;
+.bounding_box {
+	background-color: var(--barcolor);
 	border-radius: 10px;
-	background: var(--barcolor);
-	width: 50px;
-	height: 50px;
+	padding: 10px;
+	/* FIXME: `margin` shouldn't be set here. */
+	margin: 5px 10px 5px 10px;
+	
 }
 
-.catbar ul li a img {
-	position: relative;
-	display: flex;
-	height: 30px;
+.button_image {
 	width: 30px;
+	height: 30px;
+	display: block; /* otherwise there is 4ox more at the bottom... */
 }
 
 .selectedcat {

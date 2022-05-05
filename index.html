@@ -11,44 +11,41 @@
 </head>
 <body>
 	<div class="catbar">
-		<ul>
-			<li>
-				<a href="">
-					<img src="res/border-all-solid.svg" alt="">
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<img src="res/sword.svg" alt="">
-				</a>
-			</li>
-			<li>
-				<a href="" class="selectedcat">
-					<img src="res/shield-halved-solid.svg" alt="">
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<img src="res/ring-solid.svg" alt="">
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<img src="res/book-solid.svg" alt="">
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<img src="res/cube-solid.svg" alt="">
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<img src="res/pickaxe.svg" alt="">
-				</a>
-			</li>
-
-		</ul>
+		<a class="bounding_box" href="">
+			<img class="button_image"
+				 src="res/border-all-solid.svg"
+				 alt="">
+		</a>
+		<a class="bounding_box" href="">
+			<img class="button_image"
+				 src="res/sword.svg" 
+				 alt="">
+		</a>
+		<a class="bounding_box" href="">
+			<img class="button_image"
+				 src="res/shield-halved-solid.svg"
+				 alt="">
+		</a>
+		<a class="bounding_box" href="">
+			<img class="button_image"
+				 src="res/ring-solid.svg"
+				 alt="">
+		</a>
+		<a class="bounding_box" href="">
+			<img class="button_image"
+				 src="res/book-solid.svg"
+				 alt="">
+		</a>
+		<a class="bounding_box" href="">
+			<img class="button_image"
+				 src="res/cube-solid.svg"
+				 alt="">
+		</a>
+		<a class="bounding_box" href="">
+			<img class="button_image"
+				 src="res/pickaxe.svg"
+				 alt="">
+		</a>
 	</div>
 	<div class="navbar">
 		<ul>
@@ -61,6 +58,10 @@
 			<li class="sort dropdown">
 				<a href="#">
 					<select>
+						<!-- 
+							FIXME: Intellisense chiale que nous ne pouvons 
+							supposément pas imbriquer `<select>` dans `<a>`...
+						-->
 						<option value="1">Lowest Price</option>
 						<option value="2">Highest Price</option>
 						<option value="3">Ending Soon</option>
