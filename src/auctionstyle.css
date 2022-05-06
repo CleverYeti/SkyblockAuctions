@@ -27,6 +27,12 @@
 	 *       possibly with the help of
 	 *       `filter: invert()`
 	 */
+	:root {
+		--clr: #fff;
+	  
+		--textcolor: #3d3d3d;
+		--barcolor: #eee;
+	}
 }
 
 body {
