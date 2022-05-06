@@ -3,7 +3,7 @@
 page_length = 36
 
 # if the api keys is invalid just put a new one
-# each api key has a max of 65 requests per hour
+# each api key has a max of 65 requests per minute
 # the api keys need to be made by 2 different minecraft accounts
 main_api_key = ''
 second_api_key = ''
