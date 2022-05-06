@@ -50,42 +50,38 @@
 	</div>
 	<div class="navbar">
 		<ul>
-			<li class="search">
-				<input class="searchinput" type="search" name="search">
+			<li class="searchbar">
+				<input id="searchinput" type="search" name="search" onchange=reload_auctions()>
 			</li>
 
-			<li class="sort dropdown">
-				<select>
-						<!-- 
-						FIXME: Intellisense chiale que nous ne pouvons 
-						supposément pas imbriquer `<select>` dans `<a>`...
-			  		-->
-					<option value="1">Lowest Price</option>
-					<option value="2">Highest Price</option>
-					<option value="3">Ending Soon</option>
+			<li class="dropdown">
+				<select id="sort" onchange=reload_auctions()>
+					<option value="lowest">Lowest Price</option>
+					<option value="highest">Highest Price</option>
+					<option value="end">Ending Soon</option>
 				</select>
 			</li>
 
-			<li class="rarity dropdown">
-				<select>
-					<option value="4">Any Rarity</option>
-					<option value="5">Commun</option>
-					<option value="6">Uncommun</option>
-					<option value="7">Rare</option>
-          <option value="8">Epic</option>
-					<option value="9">Legendary</option>
-					<option value="10">Mythic</option>
-					<option value="11">Divine</option>
-					<option value="12">Special</option>
-			  	<option value="13">Very Special</option>
+			<li class="dropdown">
+				<select id="rarityfilter" onchange=reload_auctions()>
+					<option value="any">Any Rarity</option>
+					<option value="common">Common</option>
+					<option value="uncommon">Uncommon</option>
+					<option value="rare">Rare</option>
+					<option value="epic">Epic</option>
+					<option value="legendary">Legendary</option>
+					<option value="mythic">Mythic</option>
+					<option value="divine">Divine</option>
+					<option value="special">Special</option>
+					<option value="very special">Very Special</option>
 				</select>
 			</li>
 
-			<li class="BIN dropdown">
-				<select>
-					<option value="14">Bin and Auctions</option>
-					<option value="15">BIN Only</option>
-					<option value="16">Auctions Only</option>
+			<li class="dropdown">
+				<select id=binfilter onchange=reload_auctions()>
+					<option value="any">Bin and Auctions</option>
+					<option value="bin">BIN Only</option>
+					<option value="auctions">Auctions Only</option>
 				</select>
 			</li>
 

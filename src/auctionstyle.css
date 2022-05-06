@@ -92,7 +92,7 @@ body {
 }
 */
 
-.navbar ul li input.searchinput {
+.navbar ul li input#searchinput {
 	position: relative;
 	display: flex;
 	font-size: 1em;
@@ -178,7 +178,7 @@ body {
 		transform: translateY(-45px);
 	}
 
-	.navbar ul li input.searchinput {
+	.navbar ul li input#searchinput {
 		width: calc(40vw - 70px);
 	}
 
