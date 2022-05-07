@@ -18,12 +18,15 @@
 }
 */
 
+
+/* color schemes */
 :root {
   --clr: #1c1c1c;
   --buttoncolor: #000;
   --textcolor: #aaaaaa;
   --barcolor: #333333;
 }
+
 @media(prefers-color-scheme: light) {
 	/*
 	 * TODO: fill with useful stuff,
@@ -38,6 +41,7 @@
 	}
 }
 
+/* body styling */
 body {
 	display: flex;
 	justify-content: center;
@@ -46,6 +50,7 @@ body {
 	background: var(--clr);
 }
 
+/* bottom bar style */
 .navbar {
 	height: 70px;
 	background: var(--barcolor);
@@ -113,6 +118,8 @@ body {
 }
 */
 
+
+/* side bar style */
 .catbar {
 	display: flex;
 	flex-direction: column;
@@ -173,6 +180,58 @@ body {
 	box-shadow: 0px 0px 15px #5d62fb99;
 }
 
+
+/* loading display */
+
+#spinner {
+	transition-timing-function: ease-out;
+	display: block;
+	position: fixed;
+	background: var(--barcolor);
+	justify-content: center;
+	border-radius: 15%;
+	opacity: 0;
+  }
+#spinner:after {
+	transition-timing-function: ease-out;
+	content: " ";
+	display: block;
+	opacity: 0;
+	width: 0px;
+	height: 0px;
+	margin: 0px;
+	border-radius: 50%;
+	border: 0px solid;
+	border-color: var(--textcolor) transparent var(--textcolor) transparent;
+}
+
+#spinner.loading {
+	transition: opacity 200ms;
+	opacity: 1;
+  }
+
+#spinner.loading:after {
+	transition: width 200ms, height 200ms, margin 200ms, border 200ms;
+	opacity: 1;
+	width: 64px;
+	height: 64px;
+	margin: 10px;
+	border: 6px solid;
+	border-color: var(--textcolor) transparent var(--textcolor) transparent;
+	animation: spinner 1.2s linear infinite;
+}
+
+@keyframes spinner {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+}
+  
+
+/* smaller screen styles */
 @media (max-width: 920px) {
 	.catbar {
 		transform: translateY(-45px);
