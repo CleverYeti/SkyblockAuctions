@@ -19,7 +19,7 @@ def reloadauctions():
 def fetchauctions():
     print('fetchauctions function called')
     # fetch all auction pages from the hypixel api
-
+    
 # sort the auctions by price and end time
 def sortauctions():
     print('sortauctions function called')
