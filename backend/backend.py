@@ -9,8 +9,8 @@ page_length = 36
 # if the api keys is invalid just put a new one
 # each api key has a max of 65 requests per minute
 # the api keys need to be made by 2 different minecraft accounts
-main_api_key = ''
-second_api_key = ''
+main_api_key = ""
+second_api_key = ""
 current_key = ""
 
 #api address
@@ -29,15 +29,12 @@ def reloadauctions():
 
 # fetch auction pages from the hypixel api
 def fetchauctions():
-    global current_key
     print('fetchauctions function called')
     # init variables
-<<<<<<< HEAD
-    auctiondata = []
-=======
+    global main_api_key
+    global second_api_key
     global auctiondata
-    auctiondata = {}
->>>>>>> 1e406a898668e495a5b1c11d09cfc3b8c1c31ea8
+    auctiondata = []
     current_key = main_api_key
 
     # fetch the first page
@@ -49,7 +46,7 @@ def fetchauctions():
         return()
 
     print(jsonresponse["auctions"])
-    auctiondata.update(jsonresponse["auctions"])
+    auctiondata = auctiondata + jsonresponse["auctions"]
     totalpages = jsonresponse["auctions"]
 
     #fetch all the other pages
@@ -58,7 +55,7 @@ def fetchauctions():
         if jsonresponse["success"] == "false" :
             print("fetching error on page " + 0)
             return()
-        auctiondata.update(jsonresponse["auctions"])
+        auctiondata = auctiondata + jsonresponse["auctions"]
         # switch api key for cooldown
         if current_page == 59 :
             current_key = second_api_key
@@ -99,10 +96,11 @@ def sortauctions():
     global auctiondata
     global price_sort
     global end_sort
+    global temp_price_sort
     
-    # sort by end
+    # sort by price
+    temp_price_sort = []
     tempsort = []
-    tempsorteditems = []
     for i in auctiondata:
         if auctiondata[i][highest_bid_amount]:
             sortpos = binary_search(tempsort, auctiondata[i][highest_bid_amount], 0, len(tempsort) - 1)
@@ -110,21 +108,48 @@ def sortauctions():
         else:
             sortpos = binary_search(tempsort, auctiondata[i][starting_bid], 0, len(tempsort) - 1)
             tempsort.insert(sortpos, auctiondata[i][highest_bid_amount])
-        tempsorteditems.insert(sortpos)
- 
+        temp_price_sort.insert(sortpos)
 
-
+    # sort by end
+    temp_end_sort = []
+    tempsort = []
+    for i in auctiondata:
+        sortpos = binary_search(tempsort, auctiondata[i][end], 0, len(tempsort) - 1)
+        tempsort.insert(sortpos, auctiondata[i][end])
+        temp_price_sort.insert(sortpos)
 
 # copy the processed data into the active lists
 def copyprocesseddata():
     print('copyprocesseddata function called')
-    # copy the newly processed data into the active lists
+    auctions = auctiondata
+    price_sort = temp_price_sort
+    end_sort = temp_end_sort
 
 
+# todo : check for valid inputs
 # filter the auctions for a request
 def filterauctions(amount, sort, category, search, rarity, binfilter):
     print('filterauctions function called')
     # filter the auctions with the inputted properties
+    founditems = []
+
+    # copy the right sort into a list
+    if sort = "low" :
+        activesort = price_sort
+    elif sort = "high":
+        activesort = reversed(price_sort)
+    else :
+        activesort = end_sort
+
+    for i in activesort :
+        item = auctiondata[activesort[i]]
+        if category != "" :
+            if item[category] != category :
+                continue()
+
+
+
+
 
 
 reloadauctions()
