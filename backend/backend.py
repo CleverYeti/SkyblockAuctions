@@ -1,4 +1,7 @@
 
+import requests
+import json
+
 # amount of auction per page
 page_length = 36
 
@@ -7,6 +10,9 @@ page_length = 36
 # the api keys need to be made by 2 different minecraft accounts
 main_api_key = ''
 second_api_key = ''
+
+#api address
+hypixel_api = "https://api.hypixel.net/skyblock/auctions"
 
 # function that reloads the entire data
 def reloadauctions():
@@ -18,8 +24,39 @@ def reloadauctions():
 # fetch auction pages from the hypixel api
 def fetchauctions():
     print('fetchauctions function called')
-    # fetch all auction pages from the hypixel api
-    
+    # init variables
+    auctiondata = {}
+    current_key = main_api_key
+
+    # fetch the first page
+    jsonresponse = fetchpage(0)
+
+    # todo: add better error handling
+    if jsonresponse["success"] = false :
+        print("fetching error on page " + 0)
+        return()
+
+    auctiondata.update(jsonresponse["auctions"])
+    totalpages = jsonresponse["auctions"]
+
+    #fetch all the other pages
+    for current_page in range(totalpages - 1):
+        jsonresponse = fetchpage(current_page + 1)
+        if jsonresponse["success"] = false :
+            print("fetching error on page " + 0)
+            return()
+        auctiondata.update(jsonresponse["auctions"])
+        # switch api key for cooldown
+        if current_page = 59 :
+            current_key = second_api_key
+
+
+# todo: move this before fetchauctions
+def fetchpage(page):
+    headers = {"api": currentkey, "page": page}
+    response = requests.get(hypixel_api, headers=headers)
+    return json.loads(response.txt)
+
 # sort the auctions by price and end time
 def sortauctions():
     print('sortauctions function called')
