@@ -1,12 +1,24 @@
 
+from cmath import log
+import requests
+import json
+
 # amount of auction per page
 page_length = 36
 
 # if the api keys is invalid just put a new one
 # each api key has a max of 65 requests per minute
 # the api keys need to be made by 2 different minecraft accounts
-main_api_key = ''
-second_api_key = ''
+main_api_key = ""
+second_api_key = ""
+current_key = ""
+
+#api address
+hypixel_api = "https://api.hypixel.net/skyblock/auctions"
+
+auctions = []
+price_sort = []
+end_sort = []
 
 # function that reloads the entire data
 def reloadauctions():
@@ -18,23 +30,126 @@ def reloadauctions():
 # fetch auction pages from the hypixel api
 def fetchauctions():
     print('fetchauctions function called')
-    # fetch all auction pages from the hypixel api
+    # init variables
+    global main_api_key
+    global second_api_key
+    global auctiondata
+    auctiondata = []
+    current_key = main_api_key
+
+    # fetch the first page
+    jsonresponse = fetchpage(0)
+
+    # todo: add better error handling
+    if jsonresponse["success"] == "false" :
+        print("fetching error on page " + 0)
+        return()
+
+    print(jsonresponse["auctions"])
+    auctiondata = auctiondata + jsonresponse["auctions"]
+    totalpages = jsonresponse["auctions"]
+
+    #fetch all the other pages
+    for current_page in range(totalpages - 1):
+        jsonresponse = fetchpage(current_page + 1)
+        if jsonresponse["success"] == "false" :
+            print("fetching error on page " + 0)
+            return()
+        auctiondata = auctiondata + jsonresponse["auctions"]
+        # switch api key for cooldown
+        if current_page == 59 :
+            current_key = second_api_key
+
+
+
+# todo: move this before fetchauctions
+def fetchpage(page):
+    global current_key
+    headers = {"api": current_key, "page": str(page)}
+    response = requests.get(hypixel_api, headers=headers)
+    return json.loads(response.text)
+
+# sort algorithm
+def binary_search(arr, val, start, end):
+    if start == end:
+        if arr[start] > val:
+            return start
+        else:
+            return start+1
+  
+    if start > end:
+        return start
+  
+    mid = (start+end)/2
+    if arr[mid] < val:
+        return binary_search(arr, val, mid+1, end)
+    elif arr[mid] > val:
+        return binary_search(arr, val, start, mid-1)
+    else:
+        return mid
 
 # sort the auctions by price and end time
 def sortauctions():
     print('sortauctions function called')
     # sort the data into two lists, sorted by price and end time
 
+    global auctiondata
+    global price_sort
+    global end_sort
+    global temp_price_sort
+    
+    # sort by price
+    temp_price_sort = []
+    tempsort = []
+    for i in auctiondata:
+        if auctiondata[i][highest_bid_amount]:
+            sortpos = binary_search(tempsort, auctiondata[i][highest_bid_amount], 0, len(tempsort) - 1)
+            tempsort.insert(sortpos, auctiondata[i][highest_bid_amount])
+        else:
+            sortpos = binary_search(tempsort, auctiondata[i][starting_bid], 0, len(tempsort) - 1)
+            tempsort.insert(sortpos, auctiondata[i][highest_bid_amount])
+        temp_price_sort.insert(sortpos)
+
+    # sort by end
+    temp_end_sort = []
+    tempsort = []
+    for i in auctiondata:
+        sortpos = binary_search(tempsort, auctiondata[i][end], 0, len(tempsort) - 1)
+        tempsort.insert(sortpos, auctiondata[i][end])
+        temp_price_sort.insert(sortpos)
+
 # copy the processed data into the active lists
 def copyprocesseddata():
     print('copyprocesseddata function called')
-    # copy the newly processed data into the active lists
+    auctions = auctiondata
+    price_sort = temp_price_sort
+    end_sort = temp_end_sort
 
 
+# todo : check for valid inputs
 # filter the auctions for a request
 def filterauctions(amount, sort, category, search, rarity, binfilter):
     print('filterauctions function called')
     # filter the auctions with the inputted properties
+    founditems = []
+
+    # copy the right sort into a list
+    if sort = "low" :
+        activesort = price_sort
+    elif sort = "high":
+        activesort = reversed(price_sort)
+    else :
+        activesort = end_sort
+
+    for i in activesort :
+        item = auctiondata[activesort[i]]
+        if category != "" :
+            if item[category] != category :
+                continue()
+
+
+
+
 
 
 reloadauctions()
