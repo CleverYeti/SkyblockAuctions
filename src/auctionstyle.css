@@ -230,6 +230,42 @@ body {
 	}
 }
   
+.topbar {
+	background: var(--barcolor);
+	height: 30px;
+	width: 100vw;
+	top: 0;
+	display: flex;
+	float: top;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+}
+
+.topbar ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	
+}
+
+.topbar ul li {
+	align-items: center;
+}
+
+.topbar ul li a {
+	display: flex;
+	color: var(--textcolor);
+	text-align: center;
+	padding-left: 16px;
+	padding-right: 16px;
+	text-decoration: none;
+	font-size: 15px;
+	align-items: center;
+}
 
 /* smaller screen styles */
 @media (max-width: 920px) {
