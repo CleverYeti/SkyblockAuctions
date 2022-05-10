@@ -97,30 +97,37 @@ def sortauctions():
     global price_sort
     global end_sort
     global temp_price_sort
+    global temp_end_sort
     
     # sort by price
     temp_price_sort = []
     tempsort = []
     for i in auctiondata:
-        if auctiondata[i][highest_bid_amount]:
-            sortpos = binary_search(tempsort, auctiondata[i][highest_bid_amount], 0, len(tempsort) - 1)
-            tempsort.insert(sortpos, auctiondata[i][highest_bid_amount])
+        if auctiondata[i]["highest_bid_amount"]:
+            sortpos = binary_search(tempsort, auctiondata[i]["highest_bid_amount"], 0, len(tempsort) - 1)
+            tempsort.insert(sortpos, auctiondata[i]["highest_bid_amount"])
         else:
-            sortpos = binary_search(tempsort, auctiondata[i][starting_bid], 0, len(tempsort) - 1)
-            tempsort.insert(sortpos, auctiondata[i][highest_bid_amount])
+            sortpos = binary_search(tempsort, auctiondata[i]["starting_bid"], 0, len(tempsort) - 1)
+            tempsort.insert(sortpos, auctiondata[i]["starting_bid"])
         temp_price_sort.insert(sortpos)
 
     # sort by end
     temp_end_sort = []
     tempsort = []
     for i in auctiondata:
-        sortpos = binary_search(tempsort, auctiondata[i][end], 0, len(tempsort) - 1)
-        tempsort.insert(sortpos, auctiondata[i][end])
+        sortpos = binary_search(tempsort, auctiondata[i]["end"], 0, len(tempsort) - 1)
+        tempsort.insert(sortpos, auctiondata[i]["end"])
         temp_price_sort.insert(sortpos)
 
 # copy the processed data into the active lists
 def copyprocesseddata():
     print('copyprocesseddata function called')
+    global auctions
+    global price_sort
+    global end_sort
+    global temp_price_sort
+    global temp_end_sort
+
     auctions = auctiondata
     price_sort = temp_price_sort
     end_sort = temp_end_sort
@@ -131,12 +138,14 @@ def copyprocesseddata():
 def filterauctions(amount, sort, category, search, rarity, binfilter):
     print('filterauctions function called')
     # filter the auctions with the inputted properties
+    global price_sort
+    global end_sort
     founditems = []
 
     # copy the right sort into a list
-    if sort = "low" :
+    if sort == "low" :
         activesort = price_sort
-    elif sort = "high":
+    elif sort == "high":
         activesort = reversed(price_sort)
     else :
         activesort = end_sort
@@ -145,7 +154,7 @@ def filterauctions(amount, sort, category, search, rarity, binfilter):
         item = auctiondata[activesort[i]]
         if category != "" :
             if item[category] != category :
-                continue()
+                continue
 
 
 
