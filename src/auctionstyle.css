@@ -232,7 +232,7 @@ body {
   
 .topbar {
 	background: var(--barcolor);
-	height: 30px;
+	height: 40px;
 	width: 100vw;
 	top: 0;
 	display: flex;
