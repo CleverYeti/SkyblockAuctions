@@ -156,6 +156,7 @@ def filterauctions(amount, sort, category, search, rarity, binfilter):
     global price_sort
     global end_sort
     founditems = []
+    founditemcount = 0
 
     # copy the right sort into a list
     if sort == "low" :
@@ -164,12 +165,29 @@ def filterauctions(amount, sort, category, search, rarity, binfilter):
         activesort = reversed(price_sort)
     else :
         activesort = end_sort
-
+    
+    # check all the items
     for i in activesort :
-        item = auctiondata[activesort[i]]
-        if category != "" :
-            if item[category] != category :
+        item = auctiondata[i]
+        if category != "any" :
+            if category != item[category] :
                 continue
+        if search != "" :
+            if search in item[name] :
+                continue
+        if rarity != "any"
+            if rarity != item[tier] :
+                continue
+        if binfilter == "bin" and item[bin] == "false" :
+            continue
+        if binfilter == "auctions" and item[bin] == "true" :
+            continue
+        
+        founditems.append(item)
+        founditemcount += 1
+        if founditemcount == amount :
+            return(founditems)
+
 
 
 
