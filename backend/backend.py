@@ -24,6 +24,7 @@ end_sort = []
 def reloadauctions():
     print('reloadauctions function called')
     fetchauctions()
+    # print(auctiondata)
     sortauctions()
     copyprocesseddata()
 
@@ -38,23 +39,24 @@ def fetchauctions():
     current_key = main_api_key
 
     # fetch the first page
-    jsonresponse = fetchpage(0)
+    jsonresponse = fetchpage(0, current_key)
 
     # todo: add better error handling
     if jsonresponse["success"] == "false" :
-        print("fetching error on page " + 0)
+        print("fetching error on page " + str(0))
         return()
 
-    print(jsonresponse["auctions"])
+    print("fetched page 0")
     auctiondata = auctiondata + jsonresponse["auctions"]
-    totalpages = jsonresponse["auctions"]
+    totalpages = jsonresponse["totalPages"]
 
     #fetch all the other pages
     for current_page in range(totalpages - 1):
-        jsonresponse = fetchpage(current_page + 1)
+        jsonresponse = fetchpage(current_page + 1, current_key)
         if jsonresponse["success"] == "false" :
-            print("fetching error on page " + 0)
+            print("fetching error on page " + str(current_page))
             return()
+        print("fetched page" + str(current_page))
         auctiondata = auctiondata + jsonresponse["auctions"]
         # switch api key for cooldown
         if current_page == 59 :
@@ -63,16 +65,16 @@ def fetchauctions():
 
 
 # todo: move this before fetchauctions
-def fetchpage(page):
-    global current_key
-    headers = {"api": current_key, "page": str(page)}
-    response = requests.get(hypixel_api, headers=headers)
+def fetchpage(page, key):
+    global hypixel_api
+    headers = {"api": key, "page": page}
+    response = requests.get(hypixel_api + "?page=" + str(page))
     return json.loads(response.text)
 
 # sort algorithm
 def binary_search(arr, val, start, end):
     if start == end:
-        if arr[start] > val:
+        if arr[int(start)] > val:
             return start
         else:
             return start+1
@@ -81,9 +83,9 @@ def binary_search(arr, val, start, end):
         return start
   
     mid = (start+end)/2
-    if arr[mid] < val:
+    if arr[int(mid)] < val:
         return binary_search(arr, val, mid+1, end)
-    elif arr[mid] > val:
+    elif arr[int(mid)] > val:
         return binary_search(arr, val, start, mid-1)
     else:
         return mid
@@ -102,22 +104,26 @@ def sortauctions():
     # sort by price
     temp_price_sort = []
     tempsort = []
-    for i in auctiondata:
-        if auctiondata[i]["highest_bid_amount"]:
-            sortpos = binary_search(tempsort, auctiondata[i]["highest_bid_amount"], 0, len(tempsort) - 1)
-            tempsort.insert(sortpos, auctiondata[i]["highest_bid_amount"])
+    i = 0
+    for current_auction in auctiondata:
+        if current_auction["highest_bid_amount"] != 0:
+            sortpos = int(binary_search(tempsort, current_auction["highest_bid_amount"], 0, len(tempsort) - 1))
+            tempsort.insert(sortpos, current_auction["highest_bid_amount"])
         else:
-            sortpos = binary_search(tempsort, auctiondata[i]["starting_bid"], 0, len(tempsort) - 1)
-            tempsort.insert(sortpos, auctiondata[i]["starting_bid"])
-        temp_price_sort.insert(sortpos)
+            sortpos = int(binary_search(tempsort, current_auction["starting_bid"], 0, len(tempsort) - 1))
+            tempsort.insert(sortpos, current_auction["starting_bid"])
+        temp_price_sort.insert(sortpos, i)
+        i += 1
 
     # sort by end
     temp_end_sort = []
     tempsort = []
-    for i in auctiondata:
-        sortpos = binary_search(tempsort, auctiondata[i]["end"], 0, len(tempsort) - 1)
-        tempsort.insert(sortpos, auctiondata[i]["end"])
-        temp_price_sort.insert(sortpos)
+    i = 0
+    for current_auction in auctiondata:
+        sortpos = int(binary_search(tempsort, current_auction["end"], 0, len(tempsort) - 1))
+        tempsort.insert(sortpos, current_auction["end"])
+        temp_end_sort.insert(sortpos, i)
+        i += 1
 
 # copy the processed data into the active lists
 def copyprocesseddata():
@@ -131,6 +137,15 @@ def copyprocesseddata():
     auctions = auctiondata
     price_sort = temp_price_sort
     end_sort = temp_end_sort
+
+    # save the data to a txt file
+    with open('backend/save/auctionssave.txt', 'w') as f:
+        f.write(str(auctions))
+    with open('backend/save/pricesortsave.txt', 'w') as f:
+        f.write(str(price_sort))
+    with open('backend/save/endsortsave.txt', 'w') as f:
+        f.write(str(end_sort))
+
 
 
 # todo : check for valid inputs
