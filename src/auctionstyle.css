@@ -265,10 +265,12 @@ body {
 }
 
 .topbar a {
+	display: block;
 	margin-left: 0;
 }
 
 .topbarlogo {
+	display: block;
 	margin-left: 0;
 	padding: 0px 16px;
 }
