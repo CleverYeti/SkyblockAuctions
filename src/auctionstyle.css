@@ -264,6 +264,10 @@ body {
 	align-items: center;
 }
 
+.topbarlogo {
+	padding: 0px 16px;
+}
+
 /* smaller screen styles */
 @media (max-width: 920px) {
 	.catbar {
