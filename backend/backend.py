@@ -140,11 +140,20 @@ def copyprocesseddata():
 
     # save the data to a txt file
     with open('backend/save/auctionssave.txt', 'w') as f:
-        f.write(str(auctions))
+        f.write(json.dumps(auctions))
     with open('backend/save/pricesortsave.txt', 'w') as f:
-        f.write(str(price_sort))
+        f.write(json.dumps(price_sort))
     with open('backend/save/endsortsave.txt', 'w') as f:
-        f.write(str(end_sort))
+        f.write(json.dumps(end_sort))
+
+def loadsave():
+    with open("backend/save/auctionssave.txt", "r") as f:
+        auctions = json.loads(f.read())
+    with open("backend/save/pricesortsave.txt", "r") as f:
+        price_sort = json.loads(f.read())
+    with open("backend/save/endsortsave.txt", "r") as f:
+        end_sort = json.loads(f.read())
+
 
 
 
@@ -166,7 +175,7 @@ def filterauctions(amount, sort, category, search, rarity, binfilter):
     else :
         activesort = end_sort
     
-    # check all the items
+    # check all the items until enough are found
     for i in activesort :
         item = auctiondata[i]
         if category != "any" :
@@ -186,7 +195,8 @@ def filterauctions(amount, sort, category, search, rarity, binfilter):
         founditems.append(item)
         founditemcount += 1
         if founditemcount == amount :
-            return(founditems)
+            break
+    return(founditems)
 
 
 
