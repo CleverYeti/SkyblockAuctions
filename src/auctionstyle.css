@@ -264,8 +264,12 @@ body {
 	align-items: center;
 }
 
+.topbar a {
+	margin-left: 0;
+}
+
 .topbarlogo {
-	padding: 0px 16px !important;
+	padding: 0px 16px;
 }
 
 /* smaller screen styles */
