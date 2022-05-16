@@ -1,0 +1,79 @@
+.t0 {
+    color: #333333;
+}
+
+.t1 {
+    color: #0000aa;
+}
+
+.t2 {
+    color: #00aa00;
+}
+
+.t3 {
+    color: #00aaaa;
+}
+
+.t4 {
+    color: #aa0000;
+}
+
+.t5 {
+    color: #aa00aa;
+}
+
+.t6 {
+    color: #ffaa00;
+}
+
+.t7 {
+    color: #aaaaaa;
+}
+
+.t8 {
+    color: #555555;
+}
+
+.t9 {
+    color: #5555ff;
+}
+
+.ta {
+    color: #55ff55;
+}
+
+.tb {
+    color: #55ffff;
+}
+
+.tc {
+    color: #ff5555;
+}
+
+.td {
+    color: #ff55ff
+}
+
+.te {
+    color: #ffff55;
+}
+
+.tf {
+    color: #ffffff;
+}
+
+.tl {
+    font-weight: bold !important;
+}
+
+.tm {
+    text-decoration: line-through;
+}
+
+.tn {
+    text-decoration: underline;
+}
+
+.to {
+    font-style: italic;
+}
