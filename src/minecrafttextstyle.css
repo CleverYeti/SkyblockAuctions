@@ -75,5 +75,31 @@
 }
 
 .to {
-    font-style: italic;
+    font-style: italic
+}
+
+/* TODO : add better colors */
+
+.commonbg {
+    background: #aaaaaa;
+}
+
+.uncommonbg {
+    background: #12db15;
+}
+
+.rarebg {
+    background: #0073ff;
+}
+
+.epicbg {
+    background: #6200ff;
+}
+
+.legendarybg {
+    background: #ffaa00;
+}
+
+.mythicbg {
+    background: #f200ff;
 }
