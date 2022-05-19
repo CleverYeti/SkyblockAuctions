@@ -81,25 +81,25 @@
 /* TODO : add better colors */
 
 .commonbg {
-    background: #aaaaaa;
+    background: #aaaaaa !important;
 }
 
 .uncommonbg {
-    background: #12db15;
+    background: #12db15 !important;
 }
 
 .rarebg {
-    background: #0073ff;
+    background: #0073ff !important;
 }
 
 .epicbg {
-    background: #6200ff;
+    background: #6200ff !important;
 }
 
 .legendarybg {
-    background: #ffaa00;
+    background: #ffaa00 !important;
 }
 
 .mythicbg {
-    background: #f200ff;
+    background: #f200ff !important;
 }
