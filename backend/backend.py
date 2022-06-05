@@ -54,9 +54,9 @@ def fetchauctions():
     for current_page in range(totalpages - 1):
         jsonresponse = fetchpage(current_page + 1, current_key)
         if jsonresponse["success"] == "false" :
-            print("fetching error on page " + str(current_page))
+            print("fetching error on page " + str(current_page + 1))
             return()
-        print("fetched page" + str(current_page))
+        print("fetched page " + str(current_page + 1))
         auctiondata = auctiondata + jsonresponse["auctions"]
         # switch api key for cooldown
         if current_page == 59 :
@@ -138,21 +138,31 @@ def copyprocesseddata():
     price_sort = temp_price_sort
     end_sort = temp_end_sort
 
-    # save the data to a txt file
-    with open('backend/save/auctionssave.txt', 'w') as f:
-        f.write(json.dumps(auctions))
-    with open('backend/save/pricesortsave.txt', 'w') as f:
-        f.write(json.dumps(price_sort))
-    with open('backend/save/endsortsave.txt', 'w') as f:
-        f.write(json.dumps(end_sort))
+    createsave()
+
+def createsave():
+    # save the data to the json files
+    global auctions
+    global price_sort
+    global end_sort
+    with open('backend/save/auctionssave.json', 'w') as f:
+        f.write(json.dumps(auctions, ensure_ascii=False))
+    with open('backend/save/pricesortsave.json', 'w') as f:
+        f.write(json.dumps(price_sort, ensure_ascii=False))
+    with open('backend/save/endsortsave.json', 'w') as f:
+        f.write(json.dumps(end_sort, ensure_ascii=False))
 
 def loadsave():
-    with open("backend/save/auctionssave.txt", "r") as f:
-        auctions = json.loads(f.read())
-    with open("backend/save/pricesortsave.txt", "r") as f:
-        price_sort = json.loads(f.read())
-    with open("backend/save/endsortsave.txt", "r") as f:
-        end_sort = json.loads(f.read())
+    # load the data from the json files
+    global auctions
+    global price_sort
+    global end_sort
+    with open("save/auctionssave.json", "r", encoding="utf-8-sig") as f:
+        auctions = json.load(f)
+    with open("save/pricesortsave.json", "r", encoding="utf-8-sig") as f:
+        price_sort = json.load(f)
+    with open("save/endsortsave.json", "r", encoding="utf-8-sig") as f:
+        end_sort = json.load(f)
 
 
 
@@ -162,6 +172,7 @@ def loadsave():
 def filterauctions(amount, sort, category, search, rarity, binfilter):
     print('filterauctions function called')
     # filter the auctions with the inputted properties
+    global auctions
     global price_sort
     global end_sort
     founditems = []
@@ -177,15 +188,15 @@ def filterauctions(amount, sort, category, search, rarity, binfilter):
     
     # check all the items until enough are found
     for i in activesort :
-        item = auctiondata[i]
+        item = auctions[i]
         if category != "any" :
             if category != item[category] :
                 continue
         if search != "" :
-            if search in item[name] :
+            if search in item["name"] :
                 continue
-        if rarity != "any"
-            if rarity != item[tier] :
+        if rarity != "any" :
+            if rarity != item["tier"] :
                 continue
         if binfilter == "bin" and item[bin] == "false" :
             continue
